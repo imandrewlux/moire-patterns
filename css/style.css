@@ -1,0 +1,48 @@
+	@font-face {
+  font-family: 'Brandon';
+  src: url('../font/Brandon_med.otf'); 
+       font-weight:500;
+}
+@font-face {
+  font-family: 'Brandon';
+  src: url('../font/Brandon_light.otf'); 
+       font-weight:200;
+}
+	body{font-family: 'Brandon', serif; background-image: url('../images/buttons-repete.svg');background-size: 5px;margin: 0;padding:0;overflow: hidden;background-position: center center;}
+	h2{display: inline;font-weight: 200;}
+	input[type="range"]{width:100%;}
+	button{font-family: 'Brandon', serif;font-weight: 200;}
+	.bong{display: block;}
+	.conatiner{width:340px;}
+	.options{width:300px;padding:20px;background-color:#c2c2c2;border:1px solid black;}
+	.boxed{position: absolute;z-index: 999;left:2%;top:3%;}
+	.bg{
+		position: absolute;
+
+		width:200%;
+		height:200%;
+		top:-50%;
+		left:-50%;
+		 background-image: url('../images/buttons-repete.svg');
+		 background-size: 5px;
+		 background-position: center center;
+		z-index: 998;
+		-webkit-transform-origin: center center;
+		-o-transform-origin: center center;
+		-moz-transform-origin: center center;
+		transform-origin: center center;
+
+	}
+	.turn{background-color: pink;width:100px;height:50px;font-size: 20px;z-index: 999;}
+	.cleer{background-color: pink;width:100px;height:50px;font-size: 20px;z-index: 999;float:right;}
+	.selected{
+		-webkit-transform:rotate(360deg);
+		-moz-transform:rotate(360deg);
+		-o-transform:rotate(360deg);
+		transform:rotate(360deg);
+
+    -webkit-transition: all 20s linear;
+    -moz-transition: all 20s linear;
+    -o-transition: all 20s linear;
+    transition: all 20s linear;
+	}
