@@ -1,0 +1,168 @@
+
+<html>
+<head>
+<!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+<script src="jquery-2.2.3.min.js"></script>
+	<title>Moire Pattern</title>
+	<style>
+	@font-face {
+  font-family: 'Brandon';
+  src: url('font/Brandon_med.otf'); 
+       font-weight:500;
+}
+@font-face {
+  font-family: 'Brandon';
+  src: url('font/Brandon_light.otf'); 
+       font-weight:200;
+}
+	body{font-family: 'Brandon', serif; background-image: url('buttons-repete.svg');background-size: 5px;margin: 0;padding:0;overflow: hidden;background-position: center center;}
+	h2{display: inline;font-weight: 200;}
+	input[type="range"]{width:100%;}
+	button{font-family: 'Brandon', serif;font-weight: 200;}
+	.bong{display: block;}
+	.conatiner{width:340px;}
+	.options{width:300px;padding:20px;background-color:#c2c2c2;border:1px solid black;}
+	.boxed{position: absolute;z-index: 999;left:2%;top:3%;}
+	.bg{
+		position: absolute;
+
+		width:200%;
+		height:200%;
+		top:-50%;
+		left:-50%;
+		 background-image: url('buttons-repete.svg');
+		 background-size: 5px;
+		 background-position: center center;
+		z-index: 998;
+		-webkit-transform-origin: center center;
+		-o-transform-origin: center center;
+		-moz-transform-origin: center center;
+		transform-origin: center center;
+
+	}
+	.turn{background-color: pink;width:100px;height:50px;font-size: 20px;z-index: 999;}
+	.cleer{background-color: pink;width:100px;height:50px;font-size: 20px;z-index: 999;float:right;}
+	.selected{
+		-webkit-transform:rotate(360deg);
+		-moz-transform:rotate(360deg);
+		-o-transform:rotate(360deg);
+		transform:rotate(360deg);
+
+    -webkit-transition: all 20s linear;
+    -moz-transition: all 20s linear;
+    -o-transition: all 20s linear;
+    transition: all 20s linear;
+	}
+</style>
+</head>
+
+<body>
+<div class="boxed">
+	<div class="conatiner">
+	<div class="options">
+
+
+	<div class="bong">
+    <h2>Angle</h2>
+<input type="range" id="myRange" value="90" max="360" min="0" style="width:300px;">
+    <span id="currentValue">0</span>
+</div>
+<br>
+<div class="bong">
+	<h2>Duration</h2> (in Seconds)
+<input type="range" id="mySpeed" value="1" max="60" min="1"><br>
+    <span id="currentSpeed">1</span>
+</div>
+<br>
+<div class="bong">
+	<h2>Size</h2> (in Pixels)
+<input type="range" id="myPixel" value="5" max="100" min="1"><br>
+	<span id="currentPixel">1</span>
+</div>
+<br>
+<div class="bong" id="radioButtonContainerId" >
+	<h2>Shape</h2><br>
+<input type="radio" id="shaped" name="shape" value="square" checked >Square<br>
+<input type="radio" id="shaped" name="shape" value="triangle" >Triangle<br>
+<input type="radio" id="shaped" name="shape" value="circle" >Circle<br>
+<input type="radio" id="shaped" name="shape" value="lines" >Lines<br>
+	
+</div>
+
+
+</div>
+</div>
+	<button onclick="turny()" class="turn">ROTATE</button>
+	<button onclick="history.go(0)" class="cleer">CLEAR</button>
+</div>
+
+<div class="bg"></div>
+
+</body>
+
+<script>
+
+    function turny(){
+var y = document.getElementById("mySpeed").value;
+var x = document.getElementById("myRange").value;
+$('.bg').css({'-webkit-transform' : 'rotate('+ x +'deg)',
+                 '-moz-transform' : 'rotate('+ x +'deg)',
+                 '-ms-transform' : 'rotate('+ x +'deg)',
+                 'transform' : 'rotate('+ x +'deg)',
+                 '-webkit-transition' : 'transform '+y+'s linear',
+    			'-moz-transition' : 'transform '+y+'s linear',
+    			'-o-transition' : 'transform '+y+'s linear',
+    			'transition' : 'transform '+y+'s liear',
+    		});
+$('.dink').html(x);
+};
+$(function(){
+	var currentValue = $('#currentValue');
+	$(document).on( 'input change', '#myRange', function(){
+	    currentValue.html(this.value);
+	});$('#myRange').change();
+});
+$(function(){
+	var currentSpeed = $('#currentSpeed');
+	$(document).on( 'input change', '#mySpeed', function(){
+	    currentSpeed.html(this.value);
+	});$('#mySpeed').change();
+});
+$(function(){
+	var currentPixel = $('#currentPixel');
+	$(document).on( 'input change', '#myPixel', function(){
+	    currentPixel.html(this.value);
+var z = document.getElementById("myPixel").value;
+    $('.bg').css({'background-size' : z +'px' });
+	$('body').css({'background-size' : z +'px' });
+	});$('#myPixel').change();
+});
+/*$(function(){
+    $( "#myPixel" ).change(function() {
+    });
+});*/
+$(function(){
+	$('#radioButtonContainerId input:radio').click(function() {
+    if ($(this).val() === 'square') {
+    $('.bg').css({'background-image': 'url("buttons-repete.svg")'});
+	$('body').css({'background-image': 'url("buttons-repete.svg")'});
+    } else if ($(this).val() === 'triangle') {
+    $('.bg').css({'background-image': 'url("buttons-repete2.svg")'});
+	$('body').css({'background-image': 'url("buttons-repete2.svg")'});
+    } else if ($(this).val() === 'circle') {
+    $('.bg').css({'background-image': 'url("buttons-repete3.svg")'});
+	$('body').css({'background-image': 'url("buttons-repete3.svg")'});
+	} else if ($(this).val() === 'lines') {
+    $('.bg').css({'background-image': 'url("buttons-repete4.svg")'});
+	$('body').css({'background-image': 'url("buttons-repete4.svg")'});
+	}
+  });
+});
+
+</script>
+
+
+</html>
+
+
